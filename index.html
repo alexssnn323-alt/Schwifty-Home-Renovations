@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Schwifty Home Renovations serves Grays Harbor County with craftsmanship-led decks, siding, repairs, remodeling, and exterior upgrades.">
+  <meta name="theme-color" content="#08131c">
+  <title>Schwifty Home Renovations | Built Right. Finished Clean.</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%2308131c' d='M32 2 58 17v30L32 62 6 47V17z'/%3E%3Cpath fill='none' stroke='%2300d7ef' stroke-width='5' d='M32 8 52 20v24L32 56 12 44V20z'/%3E%3Cpath fill='%23ff7a00' d='m32 13 16 10v5L32 18 16 28v-5z'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #071018;
+      --navy: #081722;
+      --panel: #0d2230;
+      --panel-2: #102b3a;
+      --line: rgba(255,255,255,.12);
+      --text: #f6fbfe;
+      --muted: #a9bdc8;
+      --cyan: #12d4ee;
+      --orange: #ff7518;
+      --yellow: #ffc928;
+      --max: 1180px;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    ::selection { color: var(--ink); background: var(--cyan); }
+
+    .container { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .section { padding: 110px 0; position: relative; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--cyan);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: var(--orange); }
+    .section-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.35rem, 5vw, 4.8rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+    .section-lead { max-width: 620px; margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      transition: background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(5,15,23,.9);
+      border-color: var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .nav { height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 51px; height: 51px; border-radius: 12px; object-fit: cover; box-shadow: 0 0 0 1px rgba(18,212,238,.24); }
+    .brand-copy { display: grid; line-height: 1; }
+    .brand-copy strong { font-size: 1.04rem; letter-spacing: .005em; }
+    .brand-copy span { margin-top: 6px; color: var(--cyan); font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links > a:not(.btn) { color: #d8e5ea; font-size: .92rem; font-weight: 650; transition: color .2s ease; }
+    .nav-links > a:not(.btn):hover { color: var(--cyan); }
+    .menu-toggle { display: none; width: 46px; height: 46px; padding: 0; border: 1px solid var(--line); border-radius: 12px; color: white; background: rgba(255,255,255,.04); }
+    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 21px; height: 2px; margin: 5px auto; background: currentColor; transition: transform .2s, opacity .2s; }
+    .menu-open .menu-toggle span { opacity: 0; }
+    .menu-open .menu-toggle::before { transform: translateY(7px) rotate(45deg); }
+    .menu-open .menu-toggle::after { transform: translateY(-7px) rotate(-45deg); }
+
+    .btn {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #031015; background: var(--cyan); box-shadow: 0 12px 30px rgba(18,212,238,.15); }
+    .btn-primary:hover { background: #4ce5f6; box-shadow: 0 16px 34px rgba(18,212,238,.23); }
+    .btn-outline { color: white; border-color: rgba(255,255,255,.3); background: rgba(8,23,34,.26); }
+    .btn-outline:hover { border-color: var(--cyan); background: rgba(18,212,238,.08); }
+
+    .hero {
+      min-height: 790px;
+      display: flex;
+      align-items: center;
+      padding: 150px 0 82px;
+      background:
+        linear-gradient(90deg, rgba(7,16,24,.98) 0%, rgba(7,16,24,.92) 43%, rgba(7,16,24,.2) 72%, rgba(7,16,24,.38) 100%),
+        linear-gradient(0deg, var(--ink) 0%, transparent 22%),
+        url("assets/hero-exterior.jpg") center/cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .16;
+      background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(90deg, black, transparent 60%);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      bottom: 22px;
+      width: 440px;
+      height: 9px;
+      background: linear-gradient(90deg, var(--orange), var(--cyan));
+      transform: rotate(-8deg);
+      box-shadow: 0 0 40px rgba(18,212,238,.35);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero .eyebrow { color: #d5faff; }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.7rem, 7.8vw, 7.4rem);
+      line-height: .84;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    h1 .accent { color: var(--cyan); text-shadow: 4px 4px 0 rgba(255,117,24,.85); }
+    .hero-copy { max-width: 610px; margin: 30px 0 0; color: #cad8de; font-size: clamp(1rem, 2vw, 1.18rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 42px;
+      color: #dce8ec;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    .hero-proof .line { width: 65px; height: 1px; background: linear-gradient(90deg, var(--orange), var(--cyan)); }
+
+    .service-strip { position: relative; z-index: 5; margin-top: -1px; overflow: hidden; border-block: 1px solid var(--line); background: var(--orange); color: #101010; }
+    .marquee { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+    .marquee-row { display: flex; align-items: center; min-width: max-content; padding: 17px 0; }
+    .marquee span { display: flex; align-items: center; gap: 28px; padding-left: 28px; font-size: .82rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .marquee span::after { content: "✦"; color: #063746; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .intro { background: linear-gradient(180deg, #071018 0%, #091b27 100%); }
+    .intro-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; align-items: start; }
+    .intro-logo { position: sticky; top: 130px; display: grid; place-items: center; min-height: 420px; border: 1px solid var(--line); background: radial-gradient(circle at 50% 35%, rgba(18,212,238,.17), transparent 55%), #07131c; overflow: hidden; }
+    .intro-logo::before, .intro-logo::after { content: ""; position: absolute; width: 180px; height: 180px; border: 1px solid rgba(255,255,255,.1); transform: rotate(45deg); }
+    .intro-logo::after { width: 250px; height: 250px; border-color: rgba(255,117,24,.18); }
+    .intro-logo img { position: relative; z-index: 1; width: 260px; border-radius: 22px; box-shadow: var(--shadow); }
+    .intro-copy p { color: var(--muted); font-size: 1.08rem; }
+    .principles { margin-top: 48px; border-top: 1px solid var(--line); }
+    .principle { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .principle b { color: var(--orange); font-size: .82rem; letter-spacing: .12em; }
+    .principle h3 { margin: 0 0 6px; font-size: 1.18rem; }
+    .principle p { margin: 0; font-size: .96rem; }
+
+    .services { background: #e9f0f2; color: #071018; }
+    .services .eyebrow { color: #00677a; }
+    .services .section-lead { color: #48616c; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 60px; background: rgba(7,16,24,.18); border: 1px solid rgba(7,16,24,.18); }
+    .service-card { min-height: 280px; padding: 34px; background: #f4f8f9; transition: color .25s ease, background .25s ease; }
+    .service-card:hover { color: white; background: var(--panel); }
+    .service-card .num { color: #078ca0; font-size: .78rem; font-weight: 900; letter-spacing: .16em; }
+    .service-card h3 { margin: 60px 0 14px; font-size: 1.45rem; line-height: 1.1; }
+    .service-card p { margin: 0; color: #55707a; font-size: .94rem; }
+    .service-card:hover p { color: #b8cbd3; }
+    .service-card .arrow { display: block; margin-top: 24px; color: var(--orange); font-size: 1.25rem; }
+
+    .work { background: var(--ink); }
+    .work-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+    .work-head .section-lead { max-width: 430px; }
+    .gallery { display: grid; grid-template-columns: 1.4fr .8fr .8fr; grid-template-rows: 300px 300px; gap: 16px; margin-top: 58px; }
+    .project { position: relative; overflow: hidden; background: var(--panel); }
+    .project:first-child { grid-row: 1 / 3; }
+    .project:nth-child(2) { grid-column: 2 / 4; }
+    .project img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .7s; }
+    .project::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,10,15,.88), transparent 58%); }
+    .project:hover img { transform: scale(1.045); filter: saturate(1.08); }
+    .project-copy { position: absolute; z-index: 2; inset: auto 24px 22px; }
+    .project-copy span { color: var(--cyan); font-size: .72rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .project-copy h3 { margin: 6px 0 0; font-size: 1.25rem; line-height: 1.15; }
+
+    .process { background: var(--navy); overflow: hidden; }
+    .process::before { content: "SCHWIFTY"; position: absolute; top: 22px; left: -20px; color: rgba(255,255,255,.025); font-size: clamp(7rem, 20vw, 18rem); font-weight: 950; line-height: 1; letter-spacing: -.08em; }
+    .compare-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    .compare-card { position: relative; min-height: 480px; overflow: hidden; border: 1px solid var(--line); background: #061018; }
+    .compare-card img { width: 100%; height: 480px; object-fit: cover; }
+    .compare-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(4,12,18,.9), transparent 50%); }
+    .compare-tag { position: absolute; z-index: 2; top: 20px; left: 20px; padding: 8px 12px; color: white; background: rgba(5,16,24,.84); border: 1px solid var(--line); font-size: .72rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; backdrop-filter: blur(8px); }
+    .compare-card:last-child .compare-tag { color: #071018; background: var(--cyan); border-color: transparent; }
+    .compare-copy { position: absolute; z-index: 2; inset: auto 28px 24px; }
+    .compare-copy h3 { margin: 0; font-size: 1.5rem; }
+    .compare-copy p { margin: 8px 0 0; color: #c2d2d9; }
+
+    .statement { padding: 92px 0; color: #071018; background: var(--cyan); }
+    .statement-inner { display: grid; grid-template-columns: .75fr 1.25fr; gap: 80px; align-items: end; }
+    .statement .eyebrow { color: #064959; }
+    .statement .eyebrow::before { background: #071018; }
+    .statement blockquote { margin: 0; font-size: clamp(2.1rem, 5vw, 4.7rem); font-weight: 900; line-height: 1; letter-spacing: -.05em; }
+    .statement blockquote em { color: #a63d00; font-style: normal; }
+
+    .contact { background: #050d13; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
+    .contact-panel { padding: 38px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(18,212,238,.06), transparent 42%), var(--navy); box-shadow: var(--shadow); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .field { display: grid; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: #dce8ec; font-size: .82rem; font-weight: 750; }
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 5px;
+      outline: none;
+      color: white;
+      background: rgba(255,255,255,.045);
+      padding: 14px 15px;
+      transition: border .2s, box-shadow .2s;
+    }
+    input, select { min-height: 51px; }
+    textarea { min-height: 130px; resize: vertical; }
+    input:focus, textarea:focus, select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(18,212,238,.1); }
+    select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cyan) 50%), linear-gradient(135deg, var(--cyan) 50%, transparent 50%); background-position: calc(100% - 18px) 22px, calc(100% - 12px) 22px; background-size: 6px 6px; background-repeat: no-repeat; }
+    option { background: var(--navy); }
+    .contact-panel .btn { width: 100%; margin-top: 20px; border: 0; }
+    .form-note { margin: 14px 0 0; color: var(--muted); font-size: .78rem; text-align: center; }
+    .form-success { display: none; margin-top: 16px; padding: 14px; border: 1px solid rgba(18,212,238,.35); color: #bcf8ff; background: rgba(18,212,238,.07); text-align: center; }
+    .form-success.show { display: block; }
+    .contact-points { display: grid; gap: 0; margin-top: 45px; border-top: 1px solid var(--line); }
+    .contact-point { display: grid; grid-template-columns: 34px 1fr; gap: 15px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .contact-point b { color: var(--orange); }
+    .contact-point strong { display: block; }
+    .contact-point span, .contact-point a { color: var(--muted); font-size: .9rem; }
+    .contact-point a { transition: color .2s ease; }
+    .contact-point a:hover { color: var(--cyan); }
+
+    .site-footer { padding: 38px 0; border-top: 1px solid var(--line); background: #040a0e; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .footer-inner .brand img { width: 46px; height: 46px; }
+    .footer-meta { color: #8299a5; font-size: .8rem; text-align: right; }
+    .footer-meta a { color: #cce2e9; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal:nth-child(2) { transition-delay: .08s; }
+    .reveal:nth-child(3) { transition-delay: .14s; }
+    .reveal:nth-child(4) { transition-delay: .2s; }
+
+    @media (max-width: 940px) {
+      .nav-links {
+        position: fixed;
+        inset: 88px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 30px 20px;
+        background: rgba(5,15,23,.98);
+        transform: translateX(100%);
+        transition: transform .28s ease;
+      }
+      .menu-open .nav-links { transform: none; }
+      .nav-links > a:not(.btn) { padding: 16px; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+      .menu-toggle { display: block; }
+      .nav-links .btn { margin-top: 16px; }
+      .hero { min-height: 740px; background-position: 62% center; }
+      .hero::before { opacity: .1; }
+      .intro-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+      .intro-logo { position: relative; top: 0; min-height: 360px; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+      .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 360px 270px 270px; }
+      .project:first-child { grid-column: 1 / 3; grid-row: auto; }
+      .project:nth-child(2) { grid-column: auto; }
+      .statement-inner { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      .section { padding: 82px 0; }
+      .nav { height: 76px; }
+      .brand-copy strong { font-size: .9rem; }
+      .brand-copy span { font-size: .59rem; }
+      .brand img { width: 45px; height: 45px; }
+      .nav-links { top: 76px; }
+      .hero { min-height: 720px; padding: 135px 0 70px; background-position: 67% center; }
+      .hero::after { right: -230px; }
+      h1 { font-size: clamp(3.3rem, 17vw, 5.25rem); }
+      .hero-copy { max-width: 94%; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; }
+      .hero-proof { align-items: flex-start; }
+      .hero-proof .line { width: 34px; margin-top: 11px; }
+      .section-title { font-size: clamp(2.3rem, 12vw, 3.4rem); }
+      .intro-logo { min-height: 300px; }
+      .intro-logo img { width: 210px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 235px; }
+      .service-card h3 { margin-top: 38px; }
+      .work-head { display: block; }
+      .gallery { display: grid; grid-template-columns: 1fr; grid-template-rows: none; }
+      .project, .project:first-child, .project:nth-child(2) { grid-column: auto; grid-row: auto; min-height: 290px; }
+      .project:first-child { min-height: 430px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .compare-card, .compare-card img { min-height: 410px; height: 410px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .contact-panel { padding: 24px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-meta { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Schwifty Home Renovations home">
+        <img src="assets/logo-mark.png" alt="Schwifty Home Renovations SHR mark">
+        <span class="brand-copy"><strong>Schwifty Home Renovations</strong><span>Craftsmanship first</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#work">Our Work</a>
+        <a href="#about">About</a>
+        <a class="btn btn-primary" href="#contact">Free Estimate <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content reveal visible">
+          <p class="eyebrow">Serving Grays Harbor County</p>
+          <h1>Built right.<br><span class="accent">Finished clean.</span></h1>
+          <p class="hero-copy">Decks, siding, repairs, remodeling, and outdoor upgrades delivered with careful workmanship and a finish you’ll be proud to come home to.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Request a Free Estimate <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#work">See Our Work</a>
+          </div>
+          <div class="hero-proof"><span class="line"></span><span>Real projects. Thoughtful details. Results built to last.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="service-strip" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-row"><span>Decks & Railings</span><span>Siding & Exteriors</span><span>Renovations</span><span>Repairs & Restoration</span><span>Outdoor Improvements</span></div>
+        <div class="marquee-row"><span>Decks & Railings</span><span>Siding & Exteriors</span><span>Renovations</span><span>Repairs & Restoration</span><span>Outdoor Improvements</span></div>
+      </div>
+    </div>
+
+    <section class="section intro" id="about">
+      <div class="container intro-grid">
+        <div class="intro-logo reveal">
+          <img src="assets/logo-main.png" alt="Schwifty Home Renovations logo">
+        </div>
+        <div class="intro-copy">
+          <p class="eyebrow reveal">Built around your home</p>
+          <h2 class="section-title reveal">Renovation work should feel solid long after the tools are packed up.</h2>
+          <p class="reveal">Schwifty Home Renovations helps homeowners repair, refresh, and rebuild the spaces that matter most. Every project is approached with practical planning, close attention to the details, and respect for the property.</p>
+          <div class="principles">
+            <div class="principle reveal"><b>01</b><div><h3>Clear from the start</h3><p>A straightforward scope, honest communication, and no confusion about the work ahead.</p></div></div>
+            <div class="principle reveal"><b>02</b><div><h3>Craftsmanship in the details</h3><p>Careful prep and clean finishes make the difference between a quick fix and work that lasts.</p></div></div>
+            <div class="principle reveal"><b>03</b><div><h3>Respect for your property</h3><p>Organized work areas, thoughtful execution, and a finished space ready to enjoy.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <p class="eyebrow reveal">What we do</p>
+        <h2 class="section-title reveal">One trusted team for the work your home needs.</h2>
+        <p class="section-lead reveal">From structural repairs to a completely refreshed exterior, we bring the same standard of care to every stage.</p>
+        <div class="service-grid">
+          <article class="service-card reveal"><span class="num">01</span><h3>Decks & Railings</h3><p>New builds, repairs, stairs, railings, and durable outdoor spaces designed for everyday use.</p><span class="arrow" aria-hidden="true">↗</span></article>
+          <article class="service-card reveal"><span class="num">02</span><h3>Siding & Exterior Repairs</h3><p>Weather-ready siding, trim, flashing, and exterior repairs finished with a clean eye.</p><span class="arrow" aria-hidden="true">↗</span></article>
+          <article class="service-card reveal"><span class="num">03</span><h3>Home Renovations</h3><p>Purposeful updates that improve how your home looks, feels, and functions.</p><span class="arrow" aria-hidden="true">↗</span></article>
+          <article class="service-card reveal"><span class="num">04</span><h3>Repair & Restoration</h3><p>Careful removal, repair, and rebuilding for damaged or worn interior areas.</p><span class="arrow" aria-hidden="true">↗</span></article>
+          <article class="service-card reveal"><span class="num">05</span><h3>Trim & Finish Work</h3><p>The final details that bring a room or exterior together with a polished result.</p><span class="arrow" aria-hidden="true">↗</span></article>
+          <article class="service-card reveal"><span class="num">06</span><h3>Outdoor Improvements</h3><p>Hardscape, access, and exterior upgrades that make the property work better.</p><span class="arrow" aria-hidden="true">↗</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="container">
+        <div class="work-head">
+          <div><p class="eyebrow reveal">Selected projects</p><h2 class="section-title reveal">The work speaks in the details.</h2></div>
+          <p class="section-lead reveal">A look at completed builds, active projects, and the craftsmanship behind the finished result.</p>
+        </div>
+        <div class="gallery">
+          <article class="project reveal"><img src="assets/siding-crew.jpg" alt="Crew installing exterior siding" loading="lazy"><div class="project-copy"><span>Siding</span><h3>Exterior rebuild & finish</h3></div></article>
+          <article class="project reveal"><img src="assets/deck-finished.jpg" alt="Finished composite deck" loading="lazy"><div class="project-copy"><span>Outdoor living</span><h3>Composite deck installation</h3></div></article>
+          <article class="project reveal"><img src="assets/steps-finished.jpg" alt="Finished wood front steps and railings" loading="lazy"><div class="project-copy"><span>Carpentry</span><h3>Entry steps & railings</h3></div></article>
+          <article class="project reveal"><img src="assets/hardscape-finished.jpg" alt="Finished gravel and hardscape improvement" loading="lazy"><div class="project-copy"><span>Exterior</span><h3>Property improvements</h3></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process">
+      <div class="container">
+        <p class="eyebrow reveal">From structure to finish</p>
+        <h2 class="section-title reveal">The parts you see—and the work underneath.</h2>
+        <p class="section-lead reveal">Good renovation work is more than a final photo. It’s the preparation, framing, protection, and problem-solving that make the finish dependable.</p>
+        <div class="compare-grid">
+          <article class="compare-card reveal"><span class="compare-tag">In progress</span><img src="assets/porch-framing.jpg" alt="Porch framing under construction" loading="lazy"><div class="compare-copy"><h3>Built from a solid foundation</h3><p>Framing and structure planned for a clean, lasting finish.</p></div></article>
+          <article class="compare-card reveal"><span class="compare-tag">Completed</span><img src="assets/steps-finished.jpg" alt="Completed front steps with rails" loading="lazy"><div class="compare-copy"><h3>Finished with intention</h3><p>Strong lines, useful details, and a result that fits the home.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement">
+      <div class="container statement-inner">
+        <p class="eyebrow">Our standard</p>
+        <blockquote>Do the prep. Mind the details. Leave it <em>better.</em></blockquote>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow reveal">Start your project</p>
+          <h2 class="section-title reveal">Tell us what you want to improve.</h2>
+          <p class="section-lead reveal">Serving homeowners across Grays Harbor County and nearby communities. Share a few details about your project and we’ll follow up to talk through the next step.</p>
+          <div class="contact-points">
+            <div class="contact-point reveal"><b>01</b><div><strong>Service area</strong><span>Grays Harbor County & surrounding communities</span></div></div>
+            <div class="contact-point reveal"><b>02</b><div><strong>Call or text</strong><a href="tel:+13605890763">(360) 589-0763</a></div></div>
+            <div class="contact-point reveal"><b>03</b><div><strong>Email</strong><a href="mailto:schwiftyrenovations@gmail.com">schwiftyrenovations@gmail.com</a></div></div>
+          </div>
+        </div>
+        <form class="contact-panel reveal" id="estimate-form" action="https://formsubmit.co/schwiftyrenovations@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New estimate request from the Schwifty website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" id="form-next" value="https://alexssnn323-alt.github.io/Schwifty-Home-Renovations/thanks.html">
+          <input type="hidden" name="_autoresponse" value="Thanks for contacting Schwifty Home Renovations. We received your project request and will follow up soon.">
+          <div class="form-grid">
+            <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Full name"></div>
+            <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(000) 000-0000"></div>
+            <div class="field full"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+            <div class="field full"><label for="service">What can we help with?</label><select id="service" name="service" required><option value="">Choose a service</option><option>Decks & railings</option><option>Siding & exterior repair</option><option>Home renovation</option><option>Repair & restoration</option><option>Trim & finish work</option><option>Outdoor improvement</option><option>Something else</option></select></div>
+            <div class="field full"><label for="message">Project details</label><textarea id="message" name="message" required placeholder="Tell us about the space, what you want changed, and your ideal timing."></textarea></div>
+          </div>
+          <button class="btn btn-primary" type="submit">Request My Free Estimate <span aria-hidden="true">↗</span></button>
+          <p class="form-note">No pressure—just a straightforward conversation about your project.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top"><img src="assets/logo-mark.png" alt=""><span class="brand-copy"><strong>Schwifty Home Renovations</strong><span>Built right. Finished clean.</span></span></a>
+      <div class="footer-meta">© <span id="year"></span> Schwifty Home Renovations<br><a href="tel:+13605890763">(360) 589-0763</a> · <a href="mailto:schwiftyrenovations@gmail.com">Email us</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.querySelector('#header');
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const form = document.querySelector('#estimate-form');
+
+    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    menuButton.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    });
+    navLinks.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+
+    form.addEventListener('submit', () => {
+      if (location.protocol === 'http:' || location.protocol === 'https:') {
+        document.querySelector('#form-next').value = new URL('thanks.html', location.href).href;
+      }
+      form.querySelector('button').textContent = 'Sending request…';
+    });
+
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
