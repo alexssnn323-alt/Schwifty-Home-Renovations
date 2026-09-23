@@ -426,7 +426,6 @@
       .brand img { width: 45px; height: 45px; }
       .nav-links { top: 76px; }
       .hero { min-height: 720px; padding: 135px 0 70px; background-position: 67% center; }
-      .hero::after { right: -230px; }
       h1 { font-size: clamp(3.3rem, 17vw, 5.25rem); }
       h1 .h1-built { text-shadow: 3px 3px 0 var(--cyan-shade); }
       h1 .h1-finished { text-shadow: 3px 3px 0 var(--orange-shade); }
@@ -486,6 +485,172 @@
       text-transform: uppercase;
     }
 
+
+    /* ===== Final client revision: brand consistency + mobile stability ===== */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+    @supports not (overflow: clip) {
+      html, body { overflow-x: hidden; }
+    }
+    body, main, header, footer, section, .service-strip {
+      max-width: 100%;
+    }
+    main, section, .container, .nav, .intro-grid, .contact-grid, .gallery,
+    .compare-grid, .footer-top, .work-head, .trust, .portfolio-cta,
+    .intro-copy, .contact-panel, .footer-contact, .brand-copy {
+      min-width: 0;
+    }
+    .section-title, h1, .trust-title, .footer-contact, .contact-point {
+      overflow-wrap: anywhere;
+    }
+
+    /* Anthony requested the diagonal hero accent be removed. */
+    .hero::after { content: none !important; display: none !important; }
+
+    /* Logo color order: orange first/top, cyan second/bottom. */
+    h1 .h1-built {
+      color: var(--orange);
+      text-shadow: 4px 4px 0 var(--orange-shade);
+    }
+    h1 .h1-finished {
+      color: var(--cyan);
+      text-shadow: 4px 4px 0 var(--cyan-shade);
+    }
+
+    /* Orange-first / cyan-second rhythm across the service cards. */
+    .service-card { --accent: var(--orange); }
+    .service-card:nth-child(even) { --accent: var(--cyan); }
+
+    /* Three "how we work" cards: blue/teal cell, cyan heading, one orange emphasis. */
+    .principle {
+      border-color: rgba(18,212,238,.18);
+      border-left-color: var(--orange);
+      background: linear-gradient(135deg, rgba(18,212,238,.08), rgba(8,23,34,.34));
+    }
+    .principle h3 { color: var(--cyan); }
+    .principle p { color: #b8cbd3; }
+    .principle-emphasis { color: var(--orange); font-weight: 850; }
+
+    /* L&I block: less stark white, more Schwifty brand color. */
+    .trust-title { color: var(--cyan); }
+    .trust-sub { color: #b8cbd3; }
+    .trust-reg { color: #9fb7c2; }
+    .trust-reg strong { color: var(--orange); }
+    .copy-btn {
+      border-color: rgba(255,117,24,.58);
+      color: var(--orange);
+      background: rgba(255,117,24,.04);
+    }
+    .copy-btn:hover {
+      border-color: var(--orange);
+      color: #071018;
+      background: var(--orange);
+    }
+
+    /* Interactive controls use both logo colors consistently. */
+    .btn-outline {
+      color: var(--orange);
+      border-color: rgba(255,117,24,.72);
+      background: rgba(255,117,24,.035);
+    }
+    .btn-outline:hover {
+      color: #071018;
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+    .menu-toggle {
+      color: var(--cyan);
+      border-color: rgba(255,117,24,.52);
+    }
+    #carousel-prev {
+      color: var(--orange);
+      border-color: rgba(255,117,24,.5);
+    }
+    #carousel-next {
+      color: var(--cyan);
+      border-color: rgba(18,212,238,.5);
+    }
+    #carousel-prev:hover:not(:disabled) {
+      color: #071018;
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+    #carousel-next:hover:not(:disabled) {
+      color: #071018;
+      border-color: var(--cyan);
+      background: var(--cyan);
+    }
+
+    /* Project status system: orange = active work, cyan = completed. */
+    .compare-tag {
+      color: #071018;
+      background: var(--orange);
+      border-color: transparent;
+    }
+    .compare-card + .compare-card .compare-tag {
+      color: #071018;
+      background: var(--cyan);
+      border-color: transparent;
+    }
+
+    /* Finished-project replacement gets a stable crop at every breakpoint. */
+    .gallery .project:first-child img { object-position: 50% 50%; }
+
+    /* Prevent form controls / media from widening the mobile page. */
+    input, textarea, select, input[type="file"] {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .carousel, .carousel-track {
+      width: 100%;
+      max-width: 100%;
+    }
+    .slide { max-width: 100%; }
+    .portfolio-copy, .trust-body, .trust-action { min-width: 0; }
+
+    @media (max-width: 640px) {
+      .nav { gap: 10px; }
+      .brand { min-width: 0; max-width: calc(100% - 56px); }
+      .brand img { flex: 0 0 auto; }
+      .brand-copy { min-width: 0; }
+      .brand-copy strong {
+        font-size: .84rem;
+        white-space: nowrap;
+      }
+      .brand-copy span { font-size: .54rem; }
+      .menu-toggle { flex: 0 0 46px; }
+      .nav-links { width: 100%; max-width: 100vw; }
+      .hero { overflow: clip; }
+      h1 {
+        max-width: 100%;
+        font-size: clamp(3rem, 16vw, 5rem);
+      }
+      h1 .h1-built { text-shadow: 3px 3px 0 var(--orange-shade); }
+      h1 .h1-finished { text-shadow: 3px 3px 0 var(--cyan-shade); }
+      .section-title {
+        max-width: 100%;
+        font-size: clamp(2.15rem, 11vw, 3.25rem);
+      }
+      .trust-reg { overflow-wrap: anywhere; }
+      .carousel-track { overscroll-behavior-x: contain; }
+      .slide img { max-width: calc(100vw - 28px); }
+      .contact-panel, .trust, .portfolio-cta, .service-card { width: 100%; }
+      input[type="file"] { overflow: hidden; }
+    }
+
+    @media (max-width: 380px) {
+      .container { width: min(calc(100% - 22px), var(--max)); }
+      .brand-copy strong { font-size: .78rem; }
+      .brand-copy span { font-size: .5rem; letter-spacing: .12em; }
+      h1 { font-size: clamp(2.75rem, 15.5vw, 4.4rem); }
+      .hero { padding-top: 125px; }
+      .mobile-cta { gap: 8px; padding-inline: 10px; }
+      .mobile-cta .btn { font-size: .88rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -536,13 +701,13 @@
         </div>
         <div class="intro-copy">
           <p class="eyebrow reveal">Built around your home</p>
-          <h2 class="section-title reveal"><span class="title-line tone-cyan">Built to hold up.</span> <span class="title-line tone-orange">Finished with care.</span></h2>
+          <h2 class="section-title reveal"><span class="title-line tone-orange">Built to hold up.</span> <span class="title-line tone-cyan">Finished with care.</span></h2>
           <p class="reveal">Schwifty Home Renovations helps homeowners repair, refresh, and rebuild the spaces that matter most. Every project is approached with practical planning, close attention to the details, and respect for the property.</p>
           <p class="about-owner reveal"><strong>Schwifty Home Renovations LLC</strong> is owned by Anthony Chamberlain and based in Ocean City, WA, serving homeowners across Grays Harbor County.</p>
           <div class="principles">
-            <div class="principle reveal"><b>01</b><div><h3>Clear from the start</h3><p>A straightforward scope, honest communication, and no confusion about the work ahead.</p></div></div>
-            <div class="principle reveal"><b>02</b><div><h3>Craftsmanship in the details</h3><p>Careful prep and clean finishes make the difference between a quick fix and work that lasts.</p></div></div>
-            <div class="principle reveal"><b>03</b><div><h3>Respect for your property</h3><p>Organized work areas, thoughtful execution, and a finished space ready to enjoy.</p></div></div>
+            <div class="principle reveal"><b>01</b><div><h3>Clear from the start</h3><p>A <span class="principle-emphasis">straightforward</span> scope, honest communication, and no confusion about the work ahead.</p></div></div>
+            <div class="principle reveal"><b>02</b><div><h3>Craftsmanship in the details</h3><p>Careful prep and <span class="principle-emphasis">clean finishes</span> make the difference between a quick fix and work that lasts.</p></div></div>
+            <div class="principle reveal"><b>03</b><div><h3>Respect for your property</h3><p>Organized work areas, thoughtful execution, and <span class="principle-emphasis">respect</span> for the property from start to finish.</p></div></div>
           </div>
         </div>
       </div>
@@ -571,7 +736,7 @@
     <section class="section services" id="services">
       <div class="container">
         <p class="eyebrow reveal">What we do</p>
-        <h2 class="section-title reveal">One trusted team for <span class="tone-cyan">the work your home needs.</span></h2>
+        <h2 class="section-title reveal"><span class="title-line tone-orange">One trusted team for</span> <span class="title-line tone-cyan">the work your home needs.</span></h2>
         <p class="section-lead reveal">From structural repairs to a completely refreshed exterior, we bring the same standard of care to every stage.</p>
         <div class="service-grid">
           <article class="service-card reveal"><span class="num">01</span><h3>Decks & Railings</h3><p>New builds, repairs, stairs, railings, and durable outdoor spaces designed for everyday use.</p><span class="arrow" aria-hidden="true">↗</span></article>
@@ -587,11 +752,11 @@
     <section class="section work" id="work">
       <div class="container">
         <div class="work-head">
-          <div><p class="eyebrow reveal">Recent work</p><h2 class="section-title reveal"><span class="title-line">Real jobs.</span> <span class="title-line tone-cyan">Built, repaired, and finished right.</span></h2></div>
+          <div><p class="eyebrow reveal">Recent work</p><h2 class="section-title reveal"><span class="title-line tone-orange">Real jobs.</span> <span class="title-line tone-cyan">Built, repaired, and finished right.</span></h2></div>
           <p class="section-lead reveal">A closer look at completed jobs, active work, and what goes into getting the finish right.</p>
         </div>
         <div class="gallery">
-          <article class="project reveal"><img src="../assets/siding-crew.jpg" alt="Crew installing exterior siding" loading="lazy"><div class="project-copy"><span>Siding</span><h3>Exterior rebuild & finish</h3></div></article>
+          <article class="project reveal"><img src="../assets/exterior-finished.jpg" alt="Finished blue-home exterior with white trim and large front windows" loading="lazy"><div class="project-copy"><span>Exterior</span><h3>Finished exterior renovation</h3></div></article>
           <article class="project reveal"><img src="../assets/deck-finished.jpg" alt="Finished composite deck" loading="lazy"><div class="project-copy"><span>Outdoor living</span><h3>Composite deck installation</h3></div></article>
           <article class="project reveal"><img src="../assets/steps-finished.jpg" alt="Finished wood front steps and railings" loading="lazy"><div class="project-copy"><span>Carpentry</span><h3>Entry steps & railings</h3></div></article>
           <article class="project reveal"><img src="../assets/hardscape-finished.jpg" alt="Finished gravel and hardscape improvement" loading="lazy"><div class="project-copy"><span>Exterior</span><h3>Property improvements</h3></div></article>
@@ -601,7 +766,7 @@
           <div class="more-work-head">
             <h3>More project photos</h3>
             <div class="carousel-controls">
-              <span class="carousel-count" id="carousel-count" aria-live="polite">1 / 5</span>
+              <span class="carousel-count" id="carousel-count" aria-live="polite">1 / 4</span>
               <button class="carousel-btn" type="button" id="carousel-prev" aria-label="Previous photo" aria-controls="carousel-track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
               <button class="carousel-btn" type="button" id="carousel-next" aria-label="Next photo" aria-controls="carousel-track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
             </div>
@@ -610,7 +775,6 @@
             <!-- TO ADD A PHOTO: copy one <figure class="slide"> block below, change src / alt / caption, and set width + height to the image's pixel size.
                  Arrows, swipe, keyboard, and the "1 / N" counter pick it up automatically. Save new images in /assets. -->
             <div class="carousel-track" id="carousel-track" tabindex="0" aria-label="Project photos. Use the left and right arrow keys to browse.">
-              <figure class="slide"><img src="../assets/exterior-finished.jpg" width="709" height="540" alt="Front of a blue house with a large picture window and fresh white trim" loading="lazy"><figcaption><span>Exterior</span><strong>Finished exterior</strong></figcaption></figure>
               <figure class="slide"><img class="siding-progress-fix" src="../assets/siding-progress.jpg" width="1200" height="675" alt="Two-story house wrapped in house wrap with a ladder up, siding partly installed" loading="lazy"><figcaption><span>Siding</span><strong>House wrap and siding in progress</strong></figcaption></figure>
               <figure class="slide"><img src="../assets/siding-finished.jpg" width="675" height="1200" alt="Side of a two-story house with new yellow lap siding" loading="lazy"><figcaption><span>Siding</span><strong>Finished siding</strong></figcaption></figure>
               <figure class="slide"><img src="../assets/restoration-open-wall.jpg" width="709" height="540" alt="Bathroom wall opened up to studs and insulation for repair" loading="lazy"><figcaption><span>Restoration</span><strong>Wall opened up for repair</strong></figcaption></figure>
@@ -637,7 +801,7 @@
     <section class="section process">
       <div class="container">
         <p class="eyebrow reveal">Behind the finish</p>
-        <h2 class="section-title reveal">A clean finish starts with <span class="tone-orange">solid work underneath.</span></h2>
+        <h2 class="section-title reveal"><span class="title-line tone-orange">A clean finish starts with</span> <span class="title-line tone-cyan">solid work underneath.</span></h2>
         <p class="section-lead reveal">Framing, prep, protection, and cleanup are part of the job. The finished result only works when the work behind it is done right.</p>
         <div class="compare-grid">
           <article class="compare-card reveal"><span class="compare-tag">In progress</span><img src="../assets/porch-framing.jpg" alt="Porch and steps framing under construction on a blue house" loading="lazy"><div class="compare-copy"><h3>Start with the structure</h3><p>The framing and support come first. Get that right, then build the finish on top of it.</p></div></article>
@@ -657,7 +821,7 @@
       <div class="container contact-grid">
         <div>
           <p class="eyebrow reveal">Start your project</p>
-          <h2 class="section-title reveal">Tell us what you want to <span class="tone-orange">improve.</span></h2>
+          <h2 class="section-title reveal"><span class="title-line tone-orange">Tell us what you want to</span> <span class="title-line tone-cyan">improve.</span></h2>
           <p class="section-lead reveal">Serving homeowners across Grays Harbor County and nearby communities. Share a few details about your project and we’ll follow up to talk through the next step.</p>
           <div class="contact-points">
             <div class="contact-point reveal"><b>01</b><div><strong>Business address</strong><span>2534 State Route 109, Ocean City, WA 98569</span></div></div>
