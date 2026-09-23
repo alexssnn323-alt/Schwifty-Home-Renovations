@@ -30,6 +30,23 @@
     .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
     .site-footer .legal { margin-top: 18px; color: #8299a5; font-size: .85rem; }
     @media (max-width: 540px) { main { padding: 38px 22px; } }
+
+    /* Final brand + mobile stability pass */
+    html, body { width: 100%; max-width: 100%; overflow-x: clip; }
+    @supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+    main, .site-footer { max-width: min(100%, 620px); min-width: 0; }
+    h1, p, .contact, .site-footer { overflow-wrap: anywhere; }
+    .site-footer .lbi { color: #12d4ee; }
+    .site-footer .reg strong { color: #ff7518; }
+    .site-footer a.verify { color: #12d4ee; border-bottom-color: rgba(18,212,238,.45); }
+    @media (max-width: 540px) {
+      body { padding: 18px; gap: 28px; }
+      main { width: 100%; padding: 34px 20px; }
+      a.button { width: 100%; }
+      .contact a { white-space: normal; }
+      .site-footer { width: 100%; }
+    }
+
   </style>
 </head>
 <body>
